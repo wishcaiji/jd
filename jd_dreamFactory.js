@@ -9,17 +9,17 @@
 ============Quantumultx===============
 [task_local]
 #京喜工厂
-10 * * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_dreamFactory.js, tag=京喜工厂, img-url=https://github.com/58xinian/icon/raw/master/jdgc.png, enabled=true
+10 * * * * https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_dreamFactory.js, tag=京喜工厂, img-url=https://github.com/58xinian/icon/raw/master/jdgc.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "10 * * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_dreamFactory.js,tag=京喜工厂
+cron "10 * * * *" script-path=https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_dreamFactory.js,tag=京喜工厂
 
 ===============Surge=================
-京喜工厂 = type=cron,cronexp="10 * * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_dreamFactory.js
+京喜工厂 = type=cron,cronexp="10 * * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_dreamFactory.js
 
 ============小火箭=========
-京喜工厂 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_dreamFactory.js, cronexpr="10 * * * *", timeout=3600, enable=true
+京喜工厂 = type=cron,script-path=https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_dreamFactory.js, cronexpr="10 * * * *", timeout=3600, enable=true
 
  */
 // prettier-ignore
@@ -41,8 +41,8 @@ let tuanActiveId = `t2cdKwg2QPBzAqd5KMCNHg==`;
 const jxOpenUrl = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://wqsd.jd.com/pingou/dream_factory/index.html%22%20%7D`;
 let cookiesArr = [], cookie = '', message = '';
 const inviteCodes = [
-  '2HVCZsb25UVOsaRlBI9oZA==@-y6KmUw--5AWvPub4XPEqg==',
-  "2HVCZsb25UVOsaRlBI9oZA==@-y6KmUw--5AWvPub4XPEqg=="
+  'YZCxE8voZDGWZdHy6QtlIw==@-y6KmUw--5AWvPub4XPEqg==',
+  "YZCxE8voZDGWZdHy6QtlIw==@-y6KmUw--5AWvPub4XPEqg=="
 ];
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 $.tuanIds = [];
