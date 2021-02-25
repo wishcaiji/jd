@@ -1,5 +1,5 @@
 /*
-东东萌宠 更新地址： https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_pet.js
+东东萌宠 更新地址： https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_pet.js
 更新时间：2021-01-19
 已支持IOS双京东账号,Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
@@ -8,14 +8,14 @@
 =================================Quantumultx=========================
 [task_local]
 #东东萌宠
-15 6-18/6 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_pet.js, tag=东东萌宠, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdmc.png, enabled=true
+15 6-18/6 * * * https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_pet.js, tag=东东萌宠, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdmc.png, enabled=true
 =================================Loon===================================
 [Script]
-cron "15 6-18/6 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_pet.js,tag=东东萌宠
+cron "15 6-18/6 * * *" script-path=https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_pet.js,tag=东东萌宠
 ===================================Surge================================
-东东萌宠 = type=cron,cronexp="15 6-18/6 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_pet.js
+东东萌宠 = type=cron,cronexp="15 6-18/6 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_pet.js
 ====================================小火箭=============================
-东东萌宠 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_pet.js, cronexpr="15 6-18/6 * * *", timeout=3600, enable=true
+东东萌宠 = type=cron,script-path=https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_pet.js, cronexpr="15 6-18/6 * * *", timeout=3600, enable=true
 */
 const $ = new Env('东东萌宠');
 let cookiesArr = [], cookie = '', jdPetShareArr = [], isBox = false, notify, newShareCodes;
@@ -24,9 +24,9 @@ let cookiesArr = [], cookie = '', jdPetShareArr = [], isBox = false, notify, new
 //下面给出两个账号的填写示例（iOS只支持2个京东账号）
 let shareCodes = [ // IOS本地脚本用户这个列表填入你要助力的好友的shareCode
    //账号一的好友shareCode,不同好友的shareCode中间用@符号隔开
-  'MTE1NDUwMTI0MDAwMDAwMDM5MzI3NjQ5@MTEzMzI0OTE0NTAwMDAwMDA0MDQwNDIxNQ==',
+  'MTE1NDUwMTI0MDAwMDAwMDQxOTM4NDI5@MTE1NDQ5MzYwMDAwMDAwNDM5MDEyODE=@MTE1NDAxNzcwMDAwMDAwNDE3MjEyMjU=',
   //账号二的好友shareCode,不同好友的shareCode中间用@符号隔开
-  'MTE1NDUwMTI0MDAwMDAwMDM5MzI3NjQ5@MTEzMzI0OTE0NTAwMDAwMDA0MDQwNDIxNQ==',
+  'MTE1NDUwMTI0MDAwMDAwMDQxOTM4NDI5@MTE1NDQ5MzYwMDAwMDAwNDM5MDEyODE=@MTE1NDAxNzcwMDAwMDAwNDE3MjEyMjU=',
 ]
 let message = '', subTitle = '', option = {};
 let jdNotify = false;//是否关闭通知，false打开通知推送，true关闭通知推送
