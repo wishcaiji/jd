@@ -29,8 +29,9 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let appId = '1EFRRxA' , homeDataFunPrefix = 'interact_template', collectScoreFunPrefix = 'harmony', message = ''
 let lotteryResultFunPrefix = homeDataFunPrefix, browseTime = 6
 const inviteCodes = [
-  'T015uvR6RBke9VTTT0cCjVWmIaW5kRrbA',
-  'T015uvR6RBke9VTTT0cCjVWmIaW5kRrbA'
+  'T0205KkcFG9PqAeLYXOozK93CjVWmIaW5kRrbA'
+  'T0205KkcOndqtAalQHORz6h0CjVWmIaW5kRrbA'
+  'T01546ItFVdPqR3SIhoCjVWmIaW5kRrbA'
 ];
 const randomCount = $.isNode() ? 20 : 5;
 const notify = $.isNode() ? require('./sendNotify') : '';
