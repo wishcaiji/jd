@@ -344,9 +344,9 @@ async function all() {
     if (!Length) {
         $.msg(
             $.name,
-            '提示：⚠️请点击前往获取http://ymz.yichengw.cn/?id=529742\n',
-            'http://ymz.yichengw.cn/?id=529742', {
-                "open-url": "http://ymz.yichengw.cn/?id=529742"
+            '提示：⚠️请点击前往获取http://share.xiaoniuaso.com/43?invitecode=10008933\n',
+            'http://share.xiaoniuaso.com/43?invitecode=10008933', {
+                "open-url": "http://share.xiaoniuaso.com/43?invitecode=10008933"
             }
         );
         return;
