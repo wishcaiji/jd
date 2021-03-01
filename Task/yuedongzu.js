@@ -117,7 +117,7 @@ function GetCookie() {
         });
     }
     if ($request && $request.url.indexOf("profile") >= 0) {
-        const yuedongzutokenVal = $request.headers.tokenstr;
+        const yuedongzutokenVal = $request.headers.Authorization;
         if (yuedongzutokenVal) $.setdata(yuedongzutokenVal, "yuedongzutoken" + $.idx);
         $.log(
             `[${$.name + $.idx}] 获取yuedongzutokenVal✅: 成功,yuedongzutokenVal: ${yuedongzutokenVal}`
