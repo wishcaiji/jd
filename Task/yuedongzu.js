@@ -1502,8 +1502,8 @@ function kk_done(timeout = 0) {
                     if (logs) $.log(`${O}, 看看赚完成🚩: ${data}`);
                     $.kk_done = JSON.parse(data);
                     if ($.kk_done.msg) {
-                        console.log(`看看赚完成：${$.kk_done.msg}${$.kk_done.jinbi}金币\n`);
-                        $.message += `【看看赚完成】：${$.kk_done.msg}${$.kk_done.jinbi}金币\n`;
+                        console.log(`看看赚完成：获得${$.kk_done.jinbi}金币\n`);
+                        $.message += `【看看赚完成】：获得${$.kk_done.jinbi}金币\n`;
                         tid = 16
                         pos = 1
                         nonce_str = $.kk_done.fb_str
