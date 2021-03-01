@@ -453,7 +453,7 @@ function task(timeout = 0) {
                     if ($.task.statuscode == 200) {
                         gg = $.task.result.find(item => item.action === "banner://");
                         sp = $.task.result.find(item => item.action === "video://");
-                        console.log(`现金余额:${$.task.integral/100}元\n${sp.name}:${sp.nowcount}/${sp.count}\n${gg.name}:${gg.nowcount}/${gg.count}\n${sp.name}:${sp.nowcount}/${sp.count}\n`)
+                        console.log(`现金余额:${$.task.integral/100}元\n${gg.name}:${gg.nowcount}/${gg.count}\n${sp.name}:${sp.nowcount}/${sp.count}\n`)
                         $.message += `【现金余额】:${$.task.integral/100}元\n【${gg.name}】:${gg.nowcount}/${gg.count}\n【${sp.name}】:${sp.nowcount}/${sp.count}\n`
                         resolve(true);
                     }
