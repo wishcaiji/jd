@@ -11,6 +11,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 
 2.28 制作
 3.1 完成
+3.1-2 修复前置报错
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
@@ -59,7 +60,7 @@ let yuedongzutokenVal = ``;
 let middleyuedongzuTOKEN = [];
 if ($.isNode()) {
     // 没有设置 YDZ_CASH 则默认为 0 不兑换
-    CASH = process.env.YDZ_CASH || 0;
+    CASH = process.env.YDZ_CASH || 888;
 }
 if ($.isNode() && process.env.YDZ_yuedongzuTOKEN) {
     COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
@@ -107,6 +108,7 @@ if (!COOKIE.yuedongzutokenVal) {
         Length = 0
     } else Length = yuedongzutokenArr.length
 }
+
 function GetCookie() {
     if ($request && $request.url.indexOf("login") >= 0) {
         modifiedHeaders = $request.headers;
@@ -720,7 +722,7 @@ function zhuan_index(timeout = 0) {
                         ggks = $.zhuan_index.renwu.find(item => item.type === 11);
                         bss = $.zhuan_index.renwu.find(item => item.type === 13);
                         rwrw = $.zhuan_index.renwu.find(item => item.st === 1);
-                        qds = $.zhuan_index.jinbi_html.find(item => item.html === "当天");
+                        qds = $.zhuan_index.jinbi_html.find(item => item.html === "当天" ||item.html === "\u5f53\u5929" );
                         if (qds.is_sign == 1) {
                             console.log(`每日签到：已完成，获得${qds.jinbi}金币\n`)
                             $.message += `【每日签到】：已完成，获得${qds.jinbi}金币\n`;
@@ -752,6 +754,8 @@ function zhuan_index(timeout = 0) {
 async function ssp() {
     console.log(`视频任务：开始执行\n`);
     $.message += `【视频任务】：开始执行\n`;
+    c_type = 0
+    mini_pos = 0
     tid = 14
     pos = 1
     await chuansj()
