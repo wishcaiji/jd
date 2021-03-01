@@ -11,12 +11,12 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 
 2.28 制作
 3.1 完成
-3.1-2 修复前置报错
+3.1-2 修复前置报错，修复签到问题
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
 一 视频助力手动也是不行的 
-二 默认0点睡23点醒，时间务必包括这两个点 
+二 默认8点睡7点醒，时间务必包括这两个点 
 (已内置随机udid，添加重写无视多设备检测，如非必要，勿频繁登录)
 
 ⚠️一共1个位置 1个ck  👉 2条 Secrets 
@@ -280,6 +280,7 @@ async function all() {
         }
         await help_index() //助力活动
         await home() //首页信息
+        await coupon() //签到
         await zhuan_index() //任务列表
         await pophongbaoyu() //红包雨
         await dk_info() //打卡
@@ -398,6 +399,7 @@ function home(timeout = 0) {
         }, timeout)
     })
 }
+
 //步数奖励
 function donejin(timeout = 0) {
     return new Promise((resolve) => {
@@ -675,8 +677,39 @@ function help_click(timeout = 0) {
         }, timeout)
     })
 }
+//提现券页
+function coupon(timeout = 0) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            let url = {
+                url: `https://yuedongzu.yichengw.cn/apps/coupon?`,
+                headers: header,
+            }
+            $.post(url, async (err, resp, data) => {
+                try {
+                    if (logs) $.log(`${O}, 提现券页🚩: ${data}`);
+                    $.coupon = JSON.parse(data);
+                    if ($.coupon.code == 200) {
+                        qds = $.coupon.renwu.find(item => item.text === "今日已签" || item.text === "\u4eca\u65e5\u5df2\u7b7e");
+                        if (qds) {
+                            console.log(`每日签到：已完成，获得${qds.jinbi}金币\n`)
+                            $.message += `【每日签到】：已完成，获得${qds.jinbi}金币\n`;
+                        }
+                        if (!qds) {
+                            await signget() //签到
+                        }
+                    }
+                } catch (e) {
+                    $.logErr(e, resp);
+                } finally {
+                    resolve()
+                }
+            })
+        }, timeout)
+    })
+}
 //每日签到
-function sign(timeout = 0) {
+function signget(timeout = 0) {
     return new Promise((resolve) => {
         setTimeout(() => {
             let url = {
@@ -688,9 +721,9 @@ function sign(timeout = 0) {
                     if (logs) $.log(`${O}, 每日签到🚩: ${data}`);
                     $.sign = JSON.parse(data);
                     if ($.sign.code == 200) {
-                        signs = $.sign.tip.replace(`<font color='#f93232'>`, ``).replace(`</font>`, ``)
-                        console.log(`每日签到：领取${$.sign.jinbi}金币,${signs}\n`);
-                        $.message += `【每日签到】：领取${$.sign.jinbi}金币,${signs}\n`;
+
+                        console.log(`每日签到：领取${$.sign.jinbi}金币\n`);
+                        $.message += `【每日签到】：领取${$.sign.jinbi}金币\n`;
                     }
                 } catch (e) {
                     $.logErr(e, resp);
@@ -722,23 +755,18 @@ function zhuan_index(timeout = 0) {
                         ggks = $.zhuan_index.renwu.find(item => item.type === 11);
                         bss = $.zhuan_index.renwu.find(item => item.type === 13);
                         rwrw = $.zhuan_index.renwu.find(item => item.st === 1);
-                        qds = $.zhuan_index.jinbi_html.find(item => item.html === "当天" ||item.html === "\u5f53\u5929" );
-                        if (qds.is_sign == 1) {
-                            console.log(`每日签到：已完成，获得${qds.jinbi}金币\n`)
-                            $.message += `【每日签到】：已完成，获得${qds.jinbi}金币\n`;
-                        }
+
+
                         console.log(`${sps.title}：${sps.text}${sps.jinbi}金币\n${zxzs.title}：${zxzs.text}${zxzs.jinbi}金币\n${dks.title}：${dks.text}${dks.jinbi}金币\n${hss.title}：${hss.text}${hss.jinbi}金币\n${cjs.title}：${cjs.text}${cjs.jinbi}金币\n${ggks.title}：${ggks.text}${ggks.jinbi}金币\n${bss.title}：${bss.text}${bss.jinbi}金币\n`)
                         $.message += `【${sps.title}】：${sps.text}${sps.jinbi}金币\n【${zxzs.title}】：${zxzs.text}${zxzs.jinbi}金币\n【${dks.title}】：${dks.text}${dks.jinbi}金币\n【${hss.title}】：${hss.text}${hss.jinbi}金币\n【${cjs.title}】：${cjs.text}${cjs.jinbi}金币\n【${ggks.title}】：${ggks.text}${ggks.jinbi}金币\n【${bss.title}】：${bss.text}${bss.jinbi}金币\n`
-                        if (qds.is_sign == 0) {
-                            await sign() //签到
-                        }
+
                         if (sps.st == 0) {
                             await ssp() //视频任务
                         }
                         if (rwrw && rwrw.jinbi) {
                             taskid = rwrw.type
                             taskjinbi = rwrw.jinbi
-                            await zhuan_done() //任务达成
+                            await zhuan_done()
                         }
                     }
                 } catch (e) {
@@ -824,94 +852,7 @@ function dk_click(timeout = 0) {
         }, timeout)
     })
 }
-//答题活动页
-function cy_info(timeout = 0) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            let url = {
-                url: `https://yuedongzu.yichengw.cn/mini/cy_info?`,
-                headers: header,
-            }
-            $.post(url, async (err, resp, data) => {
-                try {
-                    if (logs) $.log(`${O}, 答题活动页🚩: ${data}`);
-                    $.cy_info = JSON.parse(data);
-                    if ($.cy_info.code == 200) {
-                        console.log(`答题活动页：剩余${$.cy_info.day_num}次\n`);
-                        $.message += `【答题活动页】：剩余${$.cy_info.day_num}次\n`;
-                        cy_id = $.cy_info.cy_id
-                        site = $.cy_info.site
-                        day_num = $.cy_info.day_num
-                        if ($.cy_info.day_num >= 1) {
-                            await cy_sp() //答题前置
-                        }
-                    }
-                } catch (e) {
-                    $.logErr(e, resp);
-                } finally {
-                    resolve()
-                }
-            })
-        }, timeout)
-    })
-}
-//答题前置
-function cy_sp(timeout = 0) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            let url = {
-                url: `https://yuedongzu.yichengw.cn/mini/cy_sp?`,
-                headers: header,
-                body: `day_num=${day_num}&`,
-            }
-            $.post(url, async (err, resp, data) => {
-                try {
-                    if (logs) $.log(`${O}, 答题前置🚩: ${data}`);
-                    $.cy_sp = JSON.parse(data);
-                    if ($.cy_sp.code == 200) {
-                        console.log(`答题前置：${$.cy_sp.msg}\n`);
-                        $.message += `【答题前置】：${$.cy_sp.msg}\n`;
-                        await cy_click() //答题                                         
-                    }
-                } catch (e) {
-                    $.logErr(e, resp);
-                } finally {
-                    resolve()
-                }
-            })
-        }, timeout)
-    })
-}
-//答题活动
-function cy_click(timeout = 0) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            let url = {
-                url: `https://yuedongzu.yichengw.cn/mini/cy_click?`,
-                headers: header,
-                body: `cy_id=${cy_id}&site=${site}&`,
-            }
-            $.post(url, async (err, resp, data) => {
-                try {
-                    if (logs) $.log(`${O}, 答题活动🚩: ${data}`);
-                    $.cy_click = JSON.parse(data);
-                    if ($.cy_click.code == 200) {
-                        console.log(`答题成功：获得${$.cy_click.jinbi}金币\n`);
-                        $.message += `【答题成功】：获得${$.cy_click.jinbi}金币\n`;
-                        tid = 18
-                        pos = 1
-                        nonce_str = $.cy_click.nonce_str
-                        await index()
-                    }
-                } catch (e) {
-                    $.logErr(e, resp);
-                } finally {
-                    resolve()
-                }
-            })
-        }, timeout)
-    })
-}
+
 //任务达成
 function zhuan_done(timeout = 0) {
     return new Promise((resolve) => {
@@ -1018,14 +959,14 @@ function sleep_info(timeout = 0) {
                     if ($.sleep_info.is_sleep == 1) {
                         console.log(`睡觉状态：做梦中\n`);
                         $.message += `【睡觉状态】：做梦中\n`;
-                        if (nowTimes.getHours() === 23) {
+                        if (nowTimes.getHours() === 7) {
                             await sleep_end()
                         }
                     }
                     if ($.sleep_info.is_sleep == 0) {
                         console.log(`睡觉状态：清醒中\n`);
                         $.message += `【睡觉状态】：清醒中\n`;
-                        if (nowTimes.getHours() === 0) {
+                        if (nowTimes.getHours() === 8) {
                             await sleep_start()
                         }
                     }
