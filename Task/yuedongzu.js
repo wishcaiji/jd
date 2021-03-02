@@ -1,5 +1,3 @@
-
-
 /* ziye 
 github地址 https://github.com/ziye11
 TG频道地址  https://t.me/ziyescript
@@ -16,7 +14,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 3.1-2 修复前置报错，修复签到问题
 3.2 调整抽奖机制，一次运行5次抽奖，抽中1000金币则兑奖
 3.2 修复手机不能跑的低级错误,调整提现时间为8点以后
-3.2-3 增加10分钟限速
+3.2-3 增加10分钟限速，修复用户名判定，修复视频助力
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
@@ -728,6 +726,9 @@ function help_click(timeout = 0) {
                     if ($.help_click.code == 200) {
                         console.log(`视频助力：${$.help_click.jinbi/10000}元,领取成功\n`);
                         $.message += `【视频助力】：${$.help_click.jinbi/10000}元,领取成功\n`;
+                        tid = 15
+                        pos = 1
+                        await index()
                     }
                 } catch (e) {
                     $.logErr(e, resp);
