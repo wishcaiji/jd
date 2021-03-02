@@ -14,7 +14,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 3.1-2 修复前置报错，修复签到问题
 3.2 调整抽奖机制，一次运行5次抽奖，抽中1000金币则兑奖
 3.2 修复手机不能跑的低级错误,调整提现时间为8点以后
-3.2-3 增加10分钟限速，修复用户名判定，修复视频助力
+3.2-3 增加10分钟限速，修复用户名判定，修复视频助力，修复提现
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
@@ -54,7 +54,7 @@ const $ = Env("悦动族");
 $.idx = ($.idx = ($.getval('yuedongzuSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
 const COOKIE = $.isNode() ? require("./yuedongzuCOOKIE") : ``;
-const logs = 0; // 0为关闭日志，1为开启
+const logs = 1; // 0为关闭日志，1为开启
 const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 $.message = '', COOKIES_SPLIT = '', CASH = '', CZ = '', ddtime = '';
@@ -1701,7 +1701,7 @@ function tixian_html(timeout = 0) {
                         console.log(`提现券：剩余${$.tixian_html.tixian_coupon}张券\n${jine2.jine}元：需要${jine2.cond}张券\n${jine3.jine}元：需要${jine3.cond}张券\n`);
                         $.message += `【提现券】：剩余${$.tixian_html.tixian_coupon}张券\n【${jine2.jine}元】：需要${jine2.cond}张券\n【${jine3.jine}元】：需要${jine3.cond}张券\n`;
                         if (!day_tixian_tip && nowTimes.getHours() >= 8) {
-                            if (CASH == 0.3 && $.user.money >= CASH) {
+                            if (CASH == 0.3 && $.user.money >= CASH && $.user.day_jinbi >= 6000) {
                                 await tixian() //提现
                             }
                             if (CASH == 1 && $.tixian_html.tixian_coupon >= 8 && $.user.money >= CASH) {
@@ -1724,7 +1724,7 @@ function tixian_html(timeout = 0) {
                                     CASH = 5
                                 } else if ($.user.money > 1 && $.tixian_html.tixian_coupon >= 8) {
                                     CASH = 1
-                                } else if ($.user.money > 5) {
+                                } else if ($.user.money > 5 && $.user.day_jinbi >= 6000) {
                                     CASH = 0.3
                                 }
                                 if (CASH != 888) {
