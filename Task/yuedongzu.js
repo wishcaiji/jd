@@ -14,7 +14,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 3.1-2 修复前置报错，修复签到问题
 3.2 调整抽奖机制，一次运行5次抽奖，抽中1000金币则兑奖
 3.2 修复手机不能跑的低级错误,调整提现时间为8点以后
-3.2-3 增加10分钟限速，增加视频助力
+3.2-3 增加10分钟限速
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
@@ -1359,13 +1359,13 @@ function mystate(timeout = 0) {
                         if ($.mystate.box_st == 0) {
                             await box_click() //宝箱
                         }
-                        if ($.mystate.st == 2) {
-                            console.log(`首页福利：已完成\n`);
-                            $.message += `【首页福利】：已完成\n`;
+                        if ($.mystate.jindan_st == 2) {
+                            console.log(`金蛋福利：已完成\n`);
+                            $.message += `【金蛋福利】：已完成\n`;
                         }
-                        if ($.mystate.st == 2) {
-                            console.log(`首页福利：已完成\n`);
-                            $.message += `【首页福利】：已完成\n`;
+                        if ($.mystate.box_st == 2) {
+                            console.log(`宝箱福利：已完成\n`);
+                            $.message += `【宝箱福利】：已完成\n`;
                         }
                     }
                 } catch (e) {
