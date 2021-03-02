@@ -10,6 +10,8 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 点击 http://share.xiaoniuaso.com/43?invitecode=10008933   下载APP  
 邀请码 10008933  谢谢支持
 
+⚠️ 模拟登录状态下可以获取ck，但是无法进行提现绑定操作，以及填写邀请码
+
 2.26 制作
 2.27 完成
 2.28 调整运行时长
