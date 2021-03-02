@@ -12,6 +12,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 2.28 制作
 3.1 完成
 3.1-2 修复前置报错，修复签到问题
+3.2 调整抽奖机制，一次运行5次抽奖，抽中1000金币则兑奖
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
@@ -286,7 +287,8 @@ async function all() {
         await dk_info() //打卡
         await water_info() //喝水
         await sleep_info() //睡觉
-        await gualist() //刮刮卡
+        await ggk() //刮刮卡
+        await $.wait(8000)
         await lucky() //转盘抽奖
         await $.wait(1000)
         await lucky() //转盘抽奖
@@ -294,6 +296,7 @@ async function all() {
         await kk_list() //看看赚
         await news_info() //资讯赚
         await tixian_html() //提现
+
     }
 }
 //通知
@@ -1058,6 +1061,17 @@ function sleep_done(timeout = 0) {
         }, timeout)
     })
 }
+
+
+//刮刮卡
+async function ggk() {
+    for (let i = 0; i < 5; i++) {
+        setTimeout(async () => {
+            await gualist(timeout = 0)
+        }, i * 2000);
+    }
+}
+
 //刮刮卡列表
 function gualist(timeout = 0) {
     return new Promise((resolve) => {
@@ -1094,6 +1108,7 @@ function gualist(timeout = 0) {
 function guadet(timeout = 0) {
     return new Promise((resolve) => {
         setTimeout(() => {
+
             let url = {
                 url: `https://yuedongzu.yichengw.cn/apps/gua/det?gid=${id}&`,
                 headers: header,
@@ -1102,13 +1117,35 @@ function guadet(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 刮刮卡🚩: ${data}`);
                     $.guadet = JSON.parse(data);
+
                     if ($.guadet.jine) {
-                        console.log(`刮刮卡：开启${$.guadet.jine}元\n`);
-                        $.message += `【刮刮卡】：开启${$.guadet.jine}元\n`;
-                        sign = $.guadet.sign
-                        glid = $.guadet.glid
-                        await guapost() //刮卡奖励
+                        guacs = data.match(/x(\d+).png/g).length + 1
+
+                        if (!guacs) {
+                            console.log(`【刮刮卡查询】：开启${$.guadet.jine}元,抽中1等奖\n`)
+                            $.message += `【刮刮卡查询】：开启${$.guadet.jine}元,抽中1等奖\n`;
+                            console.log(`【刮刮卡领取】：成功领奖\n`)
+                            $.message += `【刮刮卡领取】：成功领奖\n`;
+                            sign = $.guadet.sign
+                            glid = $.guadet.glid
+                            await guapost() //刮卡奖励
+                        }
+                        if (guacs) {
+                            console.log(`【刮刮卡查询】：开启${$.guadet.jine}元,抽中${guacs}等奖\n`)
+                            $.message += `【刮刮卡查询】：开启${$.guadet.jine}元,抽中${guacs}等奖\n`;
+                            if (guacs <= 2) {
+                                console.log(`【刮刮卡领取】：成功领奖\n`)
+                                $.message += `【刮刮卡领取】：成功领奖\n`;
+                                sign = $.guadet.sign
+                                glid = $.guadet.glid
+                                await guapost() //刮卡奖励
+                            } else {
+                                console.log(`【刮刮卡领取】：再来一次\n`)
+                                $.message += `【刮刮卡领取】：再来一次\n`;
+                            }
+                        }
                     }
+
                 } catch (e) {
                     $.logErr(e, resp);
                 } finally {
