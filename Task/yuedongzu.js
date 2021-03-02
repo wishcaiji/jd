@@ -14,7 +14,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 3.1-2 修复前置报错，修复签到问题
 3.2 调整抽奖机制，一次运行5次抽奖，抽中1000金币则兑奖
 3.2 修复手机不能跑的低级错误,调整提现时间为8点以后
-3.2-3 增加10分钟限速，修复用户名判定，修复视频助力，修复提现
+3.2-3 增加10分钟限速，修复用户名判定，修复视频助力
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
@@ -240,7 +240,6 @@ if (isGetCookie) {
 } else {
     !(async () => {
         await all();
-        await $.wait(1000)
         await msgShow();
     })()
     .catch((e) => {
@@ -297,14 +296,12 @@ async function all() {
             await zhuan_index() //任务列表
             await pophongbaoyu() //红包雨
             await dk_info() //打卡
+            await lucky() //转盘抽奖
             await water_info() //喝水
             await sleep_info() //睡觉
             await ggk() //刮刮卡
             await $.wait(8000)
             await lucky() //转盘抽奖
-            await $.wait(1000)
-            await lucky() //转盘抽奖
-            await $.wait(1000)
             await mystate() //福利
             await kk_list() //看看赚
             await news_info() //资讯赚
@@ -1597,7 +1594,7 @@ function kk_done(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 看看赚完成🚩: ${data}`);
                     $.kk_done = JSON.parse(data);
-                    if ($.kk_done.msg) {
+                    if ($.kk_done.code == 200) {
                         console.log(`看看赚完成：获得${$.kk_done.jinbi}金币\n`);
                         $.message += `【看看赚完成】：获得${$.kk_done.jinbi}金币\n`;
                         tid = 16
