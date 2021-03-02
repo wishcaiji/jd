@@ -266,7 +266,7 @@ async function all() {
             'version': `3`,
             'idfa': ``,
             'Content-Type': `application/x-www-form-urlencoded`,
-            'User-Agent': `YDZ/132 CFNetwork/1206 Darwin/20.1.0`,
+            'User-Agent': `YDZ/20 CFNetwork/1206 Darwin/20.1.0`,
             'platform': `2`,
             'imei': ``,
             'Host': `yuedongzu.yichengw.cn`,
