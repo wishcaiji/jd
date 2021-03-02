@@ -1,3 +1,7 @@
+const {
+    createUnzip
+} = require("zlib");
+
 /* ziye 
 github地址 https://github.com/ziye11
 TG频道地址  https://t.me/ziyescript
@@ -57,7 +61,7 @@ const COOKIE = $.isNode() ? require("./yuedongzuCOOKIE") : ``;
 const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
-$.message = '', COOKIES_SPLIT = '', CASH = '', ddtime = '';
+$.message = '', COOKIES_SPLIT = '', CASH = '', CZ = '', ddtime = '';
 const yuedongzutokenArr = [];
 let yuedongzutokenVal = ``;
 let middleyuedongzuTOKEN = [];
@@ -383,7 +387,7 @@ function jinbi_record(timeout = 0) {
                         if (logs) $.log(`${O}, 收益记录🚩: ${data}`);
                         $.jinbi_record = JSON.parse(data);
                         if ($.jinbi_record.code == 200) {
-                            if ($.jinbi_record.data[0].add_date) {
+                            if ($.jinbi_record.data && $.jinbi_record.data[0].add_date) {
                                 newtime = $.jinbi_record.data[0].add_date + 'T' + $.jinbi_record.data[0].add_time
                                 CZ = ((tts() - timecs(newtime)) / 60000).toFixed(0)
 
