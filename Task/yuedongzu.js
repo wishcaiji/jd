@@ -14,7 +14,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 3.1-2 修复前置报错，修复签到问题
 3.2 调整抽奖机制，一次运行5次抽奖，抽中1000金币则兑奖
 3.2 修复手机不能跑的低级错误,调整提现时间为8点以后
-3.2-3 增加10分钟限速
+3.2-3 增加10分钟限速，增加视频助力
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
@@ -383,14 +383,14 @@ function jinbi_record(timeout = 0) {
                         if (logs) $.log(`${O}, 收益记录🚩: ${data}`);
                         $.jinbi_record = JSON.parse(data);
                         if ($.jinbi_record.code == 200) {
-if($.jinbi_record.data[0].add_date) {
-                            newtime = $.jinbi_record.data[0].add_date + 'T' + $.jinbi_record.data[0].add_time
-                            CZ = ((tts() - timecs(newtime)) / 60000).toFixed(0)
+                            if ($.jinbi_record.data[0].add_date) {
+                                newtime = $.jinbi_record.data[0].add_date + 'T' + $.jinbi_record.data[0].add_time
+                                CZ = ((tts() - timecs(newtime)) / 60000).toFixed(0)
 
-                            console.log(`收益记录：距离上次收益${CZ}分钟，已限速10分钟\n`);
-                            $.message += `【收益记录】：距离上次收益${CZ}分钟，已限速10分钟\n`;
+                                console.log(`收益记录：距离上次收益${CZ}分钟，已限速10分钟\n`);
+                                $.message += `【收益记录】：距离上次收益${CZ}分钟，已限速10分钟\n`;
 
-}else CZ=11
+                            } else CZ = 11
 
                         }
                     } catch (e) {
@@ -690,10 +690,13 @@ function help_index(timeout = 0) {
                     if ($.help_index.code == 200) {
                         console.log(`助力活动：现金${$.help_index.jinbi}元,差${$.help_index.diff_jinbi}元,时间剩余${($.help_index.time/3600).toFixed(0)}小时\n`);
                         $.message += `【助力活动】：现金${$.help_index.jinbi}元,差${$.help_index.diff_jinbi}元,时间剩余${($.help_index.time/3600).toFixed(0)}小时\n`;
-                        //nonce_str = $.help_index.nonce_str
-                        //if ($.help_index.diff_jinbi > 0) {
-                        //await help_click()
-                        //}
+                        nonce_str = $.help_index.nonce_str
+                        if ($.help_index.diff_jinbi > 0 && $.help_index.btn_st == 0) {
+                            await help_click()
+                        } else {
+                            console.log(`视频助力：今日已达到上限\n`);
+                            $.message += `【视频助力】：今日已达到上限\n`;
+                        }
                     }
                 } catch (e) {
                     $.logErr(e, resp);
