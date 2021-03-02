@@ -292,6 +292,7 @@ async function all() {
         await lucky() //转盘抽奖
         await $.wait(1000)
         await lucky() //转盘抽奖
+        await $.wait(1000)
         await mystate() //福利
         await kk_list() //看看赚
         await news_info() //资讯赚
@@ -1067,7 +1068,7 @@ function sleep_done(timeout = 0) {
 async function ggk() {
     for (let i = 0; i < 5; i++) {
         setTimeout(async () => {
-            await gualist(timeout = 0)
+            await gualist()
         }, i * 2000);
     }
 }
