@@ -7,7 +7,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 转载请备注个名字，谢谢
 
 ⚠️悦动族
-点击 https://apps.apple.com/cn/app/%E6%82%A6%E5%8A%A8%E6%97%8F-%E8%AE%B0%E6%AD%A5%E8%BF%90%E5%8A%A8%E8%B5%B0%E8%B7%AF%E8%B5%9A%E9%92%B1%E8%BD%AF%E4%BB%B6/id1547158043 下载APP 或者APP Store 搜索悦动族
+点击  http://yuedongzu.yichengw.cn/?id=28844 下载APP 或者APP Store 搜索悦动族
 
 2.28 制作
 3.1 完成
@@ -254,9 +254,9 @@ async function all() {
     if (!Length) {
         $.msg(
             $.name,
-            '提示：⚠️请点击前往获取https://apps.apple.com/cn/app/%E6%82%A6%E5%8A%A8%E6%97%8F-%E8%AE%B0%E6%AD%A5%E8%BF%90%E5%8A%A8%E8%B5%B0%E8%B7%AF%E8%B5%9A%E9%92%B1%E8%BD%AF%E4%BB%B6/id1547158043\n',
-            'https://apps.apple.com/cn/app/%E6%82%A6%E5%8A%A8%E6%97%8F-%E8%AE%B0%E6%AD%A5%E8%BF%90%E5%8A%A8%E8%B5%B0%E8%B7%AF%E8%B5%9A%E9%92%B1%E8%BD%AF%E4%BB%B6/id1547158043', {
-                "open-url": "https://apps.apple.com/cn/app/%E6%82%A6%E5%8A%A8%E6%97%8F-%E8%AE%B0%E6%AD%A5%E8%BF%90%E5%8A%A8%E8%B5%B0%E8%B7%AF%E8%B5%9A%E9%92%B1%E8%BD%AF%E4%BB%B6/id1547158043"
+            '提示：⚠️请点击前往获取 http://yuedongzu.yichengw.cn/?id=28844\n',
+            ' http://yuedongzu.yichengw.cn/?id=28844', {
+                "open-url": " http://yuedongzu.yichengw.cn/?id=28844"
             }
         );
         return;
