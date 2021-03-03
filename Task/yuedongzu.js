@@ -15,7 +15,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 3.2 调整抽奖机制，一次运行5次抽奖，抽中1000金币则兑奖
 3.2 修复手机不能跑的低级错误,调整提现时间为8点以后
 3.2-3 增加10分钟限速，修复用户名判定，修复视频助力
-3.3 完善提现判定，修复睡觉
+3.3 完善提现判定，修复睡觉，解决资讯赚报错问题
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
@@ -390,7 +390,7 @@ function jinbi_record(timeout = 0) {
                                 console.log(`收益记录：距离上次收益${CZ}分钟，已限速10分钟\n`);
                                 $.message += `【收益记录】：距离上次收益${CZ}分钟，已限速10分钟\n`;
 
-                            } 
+                            }
 
                         }
                     } catch (e) {
@@ -1637,7 +1637,7 @@ function news_info(timeout = 0) {
                             nonce_str = $.news_info.nonce_str
                             await news_done() //资讯赚
                         }
-                        if ($.news_info.is_max == 1) {
+                        if ($.news_info.jinbi == 1000) {
                             console.log(`资讯赚：完成\n`);
                             $.message += `【资讯赚】：完成\n`;
                         }
