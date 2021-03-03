@@ -58,7 +58,8 @@ const COOKIE = $.isNode() ? require("./yuedongzuCOOKIE") : ``;
 const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
-$.message = '', COOKIES_SPLIT = '', CASH = '', CZ = '', ddtime = '';
+$.message = '', COOKIES_SPLIT = '', CASH = '', ddtime = '';
+CZ = 10
 const yuedongzutokenArr = [];
 let yuedongzutokenVal = ``;
 let middleyuedongzuTOKEN = [];
@@ -389,7 +390,7 @@ function jinbi_record(timeout = 0) {
                                 console.log(`收益记录：距离上次收益${CZ}分钟，已限速10分钟\n`);
                                 $.message += `【收益记录】：距离上次收益${CZ}分钟，已限速10分钟\n`;
 
-                            } else CZ = 11
+                            } 
 
                         }
                     } catch (e) {
@@ -1702,7 +1703,7 @@ function tixian_html(timeout = 0) {
                         }
                         console.log(`提现券：剩余${$.tixian_html.tixian_coupon}张券\n${jine2.jine}元：需要${jine2.cond}张券\n${jine3.jine}元：需要${jine3.cond}张券\n`);
                         $.message += `【提现券】：剩余${$.tixian_html.tixian_coupon}张券\n【${jine2.jine}元】：需要${jine2.cond}张券\n【${jine3.jine}元】：需要${jine3.cond}张券\n`;
-                        if (!day_tixian_tip && $.user.wx_username != "" && nowTimes.getHours() >= 8) {
+                        if (!day_tixian_tip && nowTimes.getHours() >= 8 && ($.user.wx_username != "" || $.user.is_weixin == 1)) {
                             if (CASH == 0.3 && $.user.money >= CASH && $.user.day_jinbi >= 6000) {
                                 await tixian() //提现
                             }
