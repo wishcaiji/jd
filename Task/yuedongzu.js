@@ -1633,11 +1633,11 @@ function news_info(timeout = 0) {
                     if ($.news_info.code == 200) {
                         console.log(`资讯赚页：今日获得${$.news_info.jinbi}金币\n`);
                         $.message += `【资讯赚页】：今日获得${$.news_info.jinbi}金币\n`;
-                        if ($.news_info.is_max == 0) {
+                        if ($.news_info.jinbi < 1000) {
                             nonce_str = $.news_info.nonce_str
                             await news_done() //资讯赚
                         }
-                        if ($.news_info.jinbi == 1000) {
+                        if ($.news_info.jinbi >= 1000) {
                             console.log(`资讯赚：完成\n`);
                             $.message += `【资讯赚】：完成\n`;
                         }
