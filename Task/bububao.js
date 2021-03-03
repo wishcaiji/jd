@@ -1687,7 +1687,7 @@ function tixian_html(timeout = 0) {
                         console.log(`${jine3.jine}元：${jine3.fenshu_tixian_tip}\n${jine4.jine}元：${jine4.fenshu_tixian_tip}\n${jine5.jine}元：${jine5.fenshu_tixian_tip}\n`);
                         $.message += `【${jine3.jine}元】：${jine3.fenshu_tixian_tip}\n【${jine4.jine}元】：${jine4.fenshu_tixian_tip}\n【${jine5.jine}元】：${jine5.fenshu_tixian_tip}\n`;
 
-                        if (!day_tixian_tip && $.user.wx_username != "") {
+                        if (!day_tixian_tip && ($.user.wx_username != "" || $.user.is_weixin == 1)) {
                             if (CASH == 0.3 && $.user.day_jinbi >= 5000 && $.user.money >= CASH) {
                                 await tixian() //提现
                             }
