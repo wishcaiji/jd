@@ -16,7 +16,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 2.27 完成
 2.28 调整运行时长
 3.1 修复提现问题
-3.3 修复模拟登录
+3.3 修复模拟登录 
 
 ⚠️ 时间设置    0 8,12 * * *    每天1次以上就行   
 
