@@ -16,6 +16,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 2.27 完成
 2.28 调整运行时长
 3.1 修复提现问题
+3.3 修复模拟登录
 
 ⚠️ 时间设置    0 8,12 * * *    每天1次以上就行   
 
@@ -174,16 +175,44 @@ function GetCookie() {
  if ($response && $request.url.indexOf("login") >= 0) {
         USERID = Number($.getval("ymzhuanUSERID"));
 if (typeof USERID === 'undefined' || USERID == 0) { $.log(
-            `[${$.name + $.idx}] 未设置USERID直接登录`
+            `[${$.name + $.idx}] 未设置USERID`
         );
-        $.msg($.name + $.idx, `未设置USERID直接登录`, ``);
+        $.msg($.name + $.idx, `未设置USERID`, ``);
   $.done({
             body: body
         });
-    }else {
-console.log($response.body)
- BODY=JSON.parse($response.body)
-console.log(JSON.parse($response.body).result.id)
+    }else { 
+  
+   
+   
+    let BODY = { 
+   "timestamp": `${ddtime}`, 
+   "result": { 
+   "id": 0, 
+   "invitecode": "", 
+   "status": 1, 
+   "pid": 0, 
+   "pinvitecode": "", 
+   "cellphone": "", 
+   "alipayaccount": "", 
+   "alipayname": "", 
+   "bannertime": 180, 
+   "bannerclkratio": "0##8", 
+   "cpvideo": 5, 
+   "cpratio": 10, 
+   "appinstallratio": "75##0##25", 
+   "appsigntime": 60, 
+   "leastbanner": 2, 
+   "qqgroup": "935826100", 
+   "shareurl": "", 
+   "appurl1": "", 
+   "appurl2": "", 
+   "nickname": "", 
+   "icon": "" 
+   }, 
+   "msg": "ok", 
+   "statuscode": 200 
+   } 
         BODY.result.id = USERID
         BODY.result.invitecode = `${USERID + 10000000}`
         $.log(
