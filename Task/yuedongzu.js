@@ -16,6 +16,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 3.2 修复手机不能跑的低级错误,调整提现时间为8点以后
 3.2-3 增加10分钟限速，修复用户名判定，修复视频助力
 3.3 完善提现判定，修复睡觉，解决资讯赚报错问题
+3.4 取消限速
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
@@ -291,7 +292,7 @@ async function all() {
         if (!cookie_is_live) {
             continue;
         }
-        await jinbi_record() //收益记录
+        //await jinbi_record() //收益记录
         if (CZ >= 10) {
             await help_index() //助力活动
             await home() //首页信息
