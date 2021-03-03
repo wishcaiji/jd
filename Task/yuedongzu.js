@@ -781,11 +781,11 @@ function signget(timeout = 0) {
             $.post(url, async (err, resp, data) => {
                 try {
                     if (logs) $.log(`${O}, 每日签到🚩: ${data}`);
-                    $.sign = JSON.parse(data);
-                    if ($.sign.code == 200) {
+                    $.signget = JSON.parse(data);
+                    if ($.signget.code == 200) {
 
-                        console.log(`每日签到：领取${$.sign.jinbi}金币\n`);
-                        $.message += `【每日签到】：领取${$.sign.jinbi}金币\n`;
+                        console.log(`每日签到：领取${$.signget.jinbi}金币\n`);
+                        $.message += `【每日签到】：领取${$.signget.jinbi}金币\n`;
                     }
                 } catch (e) {
                     $.logErr(e, resp);
