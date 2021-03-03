@@ -15,6 +15,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/ziye.
 3.2 调整抽奖机制，一次运行5次抽奖，抽中1000金币则兑奖
 3.2 修复手机不能跑的低级错误,调整提现时间为8点以后
 3.2-3 增加10分钟限速，修复用户名判定，修复视频助力
+3.3 完善提现判定，修复睡觉
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
@@ -296,11 +297,12 @@ async function all() {
             await zhuan_index() //任务列表
             await pophongbaoyu() //红包雨
             await dk_info() //打卡
-            await lucky() //转盘抽奖
             await water_info() //喝水
             await sleep_info() //睡觉
             await ggk() //刮刮卡
             await $.wait(8000)
+            await lucky() //转盘抽奖
+            await $.wait(1000)
             await lucky() //转盘抽奖
             await mystate() //福利
             await kk_list() //看看赚
@@ -1076,8 +1078,8 @@ function sleep_end(timeout = 0) {
                     if (logs) $.log(`${O}, 结束睡觉🚩: ${data}`);
                     $.sleep_end = JSON.parse(data);
                     if ($.sleep_end.code == 200) {
-                        console.log(`结束睡觉：结束睡觉\n`);
-                        $.message += `【结束睡觉】：结束睡觉\n`;
+                        console.log(`结束睡觉：结束睡觉，产生${$.sleep_end.jinbi}金币\n`);
+                        $.message += `【结束睡觉】：结束睡觉，产生${$.sleep_end.jinbi}金币\n`;
                         taskid = $.sleep_end.taskid
                         nonce_str = $.sleep_end.nonce_str
                         await sleep_done() //睡觉奖励
@@ -1105,8 +1107,8 @@ function sleep_done(timeout = 0) {
                     if (logs) $.log(`${O}, 睡觉奖励🚩: ${data}`);
                     $.sleep_done = JSON.parse(data);
                     if ($.sleep_done.code == 200) {
-                        console.log(`睡觉奖励：睡觉奖励\n`);
-                        $.message += `【睡觉奖励】：睡觉奖励\n`;
+                        console.log(`睡觉奖励：睡觉奖励领取${$.sleep_done.jinbi}金币\n`);
+                        $.message += `【睡觉奖励】：睡觉奖励领取${$.sleep_done.jinbi}金币\n`;
                     }
                 } catch (e) {
                     $.logErr(e, resp);
@@ -1514,6 +1516,9 @@ function kk_list(timeout = 0) {
                         console.log(`看看赚列表：下个任务：${is_ok.mini_name}\n`);
                         $.message += `【看看赚列表】：下个任务：${is_ok.mini_name}\n`;
                         await kk_click() //看看赚执行
+                    } else {
+                        console.log(`看看赚：已完成\n`);
+                        $.message += `【看看赚】：已完成\n`;
                     }
                 } catch (e) {
                     $.logErr(e, resp);
@@ -1697,7 +1702,7 @@ function tixian_html(timeout = 0) {
                         }
                         console.log(`提现券：剩余${$.tixian_html.tixian_coupon}张券\n${jine2.jine}元：需要${jine2.cond}张券\n${jine3.jine}元：需要${jine3.cond}张券\n`);
                         $.message += `【提现券】：剩余${$.tixian_html.tixian_coupon}张券\n【${jine2.jine}元】：需要${jine2.cond}张券\n【${jine3.jine}元】：需要${jine3.cond}张券\n`;
-                        if (!day_tixian_tip && nowTimes.getHours() >= 8) {
+                        if (!day_tixian_tip && $.user.wx_username != "" && nowTimes.getHours() >= 8) {
                             if (CASH == 0.3 && $.user.money >= CASH && $.user.day_jinbi >= 6000) {
                                 await tixian() //提现
                             }
