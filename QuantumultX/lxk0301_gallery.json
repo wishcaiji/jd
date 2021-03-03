@@ -32,5 +32,7 @@
     "44 12 * * 6 https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_unbind.js, tag=注销京东店铺会员卡, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jd_unbind.png",
     "30 8 * * * https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_crazy_joy.js, tag=crazyJoy任务, img-url=https://raw.githubusercontent.com/Orz-3/task/master/jd.png",
     "15 17 * * * https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/backUp/xmSports.js, tag=小米运动, img-url=https://raw.githubusercontent.com/58xinian/icon/master/xmyd.png"
+    "15 17 * * * https://jdsharedresourcescdn.azureedge.net/jdresource/jd_speed_redpocke.js,tag=京东极速版红包, img-url=https://raw.githubusercontent.com/58xinian/icon/master/xmyd.png"
+    "15 17 * * * https://jdsharedresourcescdn.azureedge.net/jdresource/jd_speed_sign.js,tag=京东极速版, img-url=https://raw.githubusercontent.com/58xinian/icon/master/xmyd.png"
   ]
 }
