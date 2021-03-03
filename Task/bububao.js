@@ -18,6 +18,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/zi
 3.2 调整抽奖机制， 一次运行5次抽奖， 抽中1000金币则兑奖
 3.3 修复签到，增加10分钟限速，完善提现判定，修复睡觉，调整为抽奖200金币也领取
 3.3-2 调整刮奖机制 分3个时间段刮奖
+3.4 取消限速
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 35次以上就行   
 
@@ -299,7 +300,7 @@ async function all() {
         if (!cookie_is_live) {
             continue;
         }
-        await userjinbi() //收益记录
+        //await userjinbi() //收益记录
         if (CZ >= 10) {
             await help_index() //助力活动
             await home() //首页信息
