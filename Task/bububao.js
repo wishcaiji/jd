@@ -17,6 +17,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/zi
 3.1 修复看看赚
 3.2 调整抽奖机制， 一次运行5次抽奖， 抽中1000金币则兑奖
 3.3 修复签到，增加10分钟限速，完善提现判定，修复睡觉，调整为抽奖200金币也领取
+3.3-2 调整刮奖机制 分3个时间段刮奖
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 35次以上就行   
 
@@ -763,7 +764,7 @@ function help_click(timeout = 0) {
     })
 }
 //每日签到
-function sign(timeout = 0) {
+function signget(timeout = 0) {
     return new Promise((resolve) => {
         setTimeout(() => {
             let url = {
@@ -773,13 +774,13 @@ function sign(timeout = 0) {
             $.post(url, async (err, resp, data) => {
                 try {
                     if (logs) $.log(`${O}, 每日签到🚩: ${data}`);
-                    $.sign = JSON.parse(data);
-                    if ($.sign.code == 1) {
-                        console.log(`每日签到：${$.sign.msg}\n`);
-                        $.message += `【每日签到】：${$.sign.msg}\n`;
+                    $.signget = JSON.parse(data);
+                    if ($.signget.code == 1) {
+                        console.log(`每日签到：${$.signget.msg}\n`);
+                        $.message += `【每日签到】：${$.signget.msg}\n`;
                         tid = 2
                         pos = 1
-                        nonce_str = $.sign.nonce_str
+                        nonce_str = $.signget.nonce_str
                         await callback()
                     }
                 } catch (e) {
@@ -807,7 +808,7 @@ function sign_html(timeout = 0) {
                         console.log(`签到列表：已签到${$.sign_html.sign_day}天\n`);
                         $.message += `【签到列表】：已签到${$.sign_html.sign_day}天\n`;
                         if ($.sign_html.is_sign_day == 0) {
-                            await sign() //签到
+                            await signget() //签到
                         } else {
                             console.log(`每日签到：已签到\n`);
                             $.message += `【每日签到】：已签到\n`;
@@ -1211,7 +1212,20 @@ function guadet(timeout = 0) {
                         if (guacs) {
                             console.log(`【刮刮卡查询】：开启${$.guadet.jine}元,抽中${guacs}等奖\n`)
                             $.message += `【刮刮卡查询】：开启${$.guadet.jine}元,抽中${guacs}等奖\n`;
-                            if (guacs <= 3) {
+
+                            if (guacs <= 3 && nowTimes.getHours() >= 0 && nowTimes.getHours() <= 17) {
+                                console.log(`【刮刮卡领取】：成功领奖\n`)
+                                $.message += `【刮刮卡领取】：成功领奖\n`;
+                                sign = $.guadet.sign
+                                glid = $.guadet.glid
+                                await guapost() //刮卡奖励
+                            } else if (guacs <= 4 && nowTimes.getHours() >= 18 && nowTimes.getHours() <= 22) {
+                                console.log(`【刮刮卡领取】：成功领奖\n`)
+                                $.message += `【刮刮卡领取】：成功领奖\n`;
+                                sign = $.guadet.sign
+                                glid = $.guadet.glid
+                                await guapost() //刮卡奖励
+                            } else if (guacs <= 5  && nowTimes.getHours() == 23) {
                                 console.log(`【刮刮卡领取】：成功领奖\n`)
                                 $.message += `【刮刮卡领取】：成功领奖\n`;
                                 sign = $.guadet.sign
