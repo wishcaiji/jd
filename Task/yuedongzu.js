@@ -50,6 +50,7 @@ http-response https:\/\/yuedongzu\.yichengw\.cn\/* script-path=https://raw.githu
 #悦动族获取TOKEN
 悦动族获取TOKEN = type=http-response,pattern=https:\/\/yuedongzu\.yichengw\.cn\/*,script-path=https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/yuedongzu.js
 
+
 */
 const $ = Env("悦动族");
 $.idx = ($.idx = ($.getval('yuedongzuSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
