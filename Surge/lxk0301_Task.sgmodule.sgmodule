@@ -68,5 +68,7 @@ cron "20 11 * * *" script-path=https://raw.githubusercontent.com/wishcaiji/JD-sc
 cron "20 12 * * 6" script-path=https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_unbind.js, timeout=750, wake-system=1, tag=注销京东店铺会员卡
 #疯狂的joy日常任务
 cron "30 8 * * *" script-path=https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_crazy_joy.js, timeout=1750, wake-system=1, tag=疯狂的joy日常任务
+# 她的节享京豆
+cron "30 8 * * *" script-path=https://raw.githubusercontent.com/wishcaiji/JD-scripts/master/jd_firecrackers.js, timeout=1750, wake-system=1, tag=她的节享京豆
 
 
