@@ -1,25 +1,28 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: 走路赚钱
+name: 腾讯自选股
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '0 8 * * *'
   # watch:
   #       types: started
   # repository_dispatch:
-  #   types: jd_cash
+  #   types: txstock
 jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-      URL: "https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/QQread.js"
-      RUNFILE: "Task/QQread.js"      
-      RUNSTEPTOKEN: ${{ secrets.RUNSTEPTOKEN }}
-      RUNSTEPKEY: ${{ secrets.RUNSTEPKEY }}
+      URL: "https://raw.githubusercontent.com/ZhiYi-N/Private-Script/master/Scripts/jrtt.js"
+      RUNFILE: "txstock.js"
+      USERHEADER: ${{ secrets.TXS_USERHEADER }}
+      USERKEY: ${{ secrets.TXS_USERKEY }}
+      CASHHEADER: ${{ secrets.TXS_CASHHEADER }}
+      SIGNHEADER: ${{ secrets.TXS_SIGNHEADER }}
+      SIGNKEY: ${{ secrets.TXS_SIGNKEY }}
+      TASKHEADER: ${{ secrets.TXS_TASKHEADER }}
+      TASKKEY: ${{ secrets.TXS_TASKKEY }}
+      WXTASKKEY: ${{ secrets.TXS_WXTASKKEY }}
       PUSH_KEY: ${{ secrets.PUSH_KEY }}
       BARK_PUSH: ${{ secrets.BARK_PUSH }}
       BARK_SOUND: ${{ secrets.BARK_SOUND }}
@@ -45,11 +48,10 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
       - name: npm install
-        #if: env.RLHEADER
+        #if: env.JRTTSIGNKEY
         run: |
           npm install
-      - name: '运行 【走路赚钱】'
-        #if: env.RLHEADER
+      - name: '运行 【腾讯自选股】'
+        #if: env.JRTTSIGNKEY
         run: |
-          node Task/runstep.js
-          
+          node Task/txstock.js
