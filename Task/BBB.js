@@ -12,13 +12,13 @@ if ($.isNode())
 
 
 CookieArr=[{"store":"appstore",
-"tokenstr":"559FE1635CE0FAB2E9D6CB27B525892G1611058371",
+"tokenstr":"55094726B432AA404FDC0558E532243G1614348329",
 "Connection":"keep-alive",
 "Accept-Encoding":"gzip, deflate, br","version":"10",
-"idfa":"6A512375-6547-48CF-AB48-A08D67EC8D30",
+"idfa":"946FBB5E-E792-4740-94F1-828058C62A08",
 "User-Agent":"BBB/132 CFNetwork/1209 Darwin/20.2.0","platform":"2",
-"imei":"8A6BFFF9-17D2-4CF6-BC4B-94EE99316DFF",
-"Cookie":"PHPSESSID=91v38taqi5smdgeb0l8rkm3ig3",
+"imei":"CA6D06FB-5CC0-4647-A67B-DA30BBA1B720",
+"Cookie":"PHPSESSID=bctdvgskfp11odau68ahuqhbv1",
 "Host":"bububao.duoshoutuan.com",
 "Accept-Language":"zh-cn",
 "Accept":"*/*","Content-Length":"0"}]
