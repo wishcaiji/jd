@@ -12,16 +12,16 @@ if ($.isNode())
 
 
 CookieArr=[{"store":"appstore",
-"tokenstr":"C6FAD92A207DDC5D1B3FB5058531527G1613913679",
+"tokenstr":"55094726B432AA404FDC0558E532243G1614348329",
 "Connection":"keep-alive",
 "Accept-Encoding":"gzip, deflate, br","version":"10",
-"idfa":"00000000-0000-0000-0000-000000000000",
+"idfa":"946FBB5E-E792-4740-94F1-828058C62A08",
 "User-Agent":"BBB/132 CFNetwork/1209 Darwin/20.2.0","platform":"2",
-"imei":"A4F80710-0211-4059-8D78-DE4F7C72F7D6",
-"Cookie":"PHPSESSID=4pud02t39tc4qh8f6l4qshjpp5",
-"Host":"bububao.duoshoutuan.com",   
-"Accept-Language":"zh-cn",  
-"Accept":"*/*","Content-Length":"0"}]    
+"imei":"CA6D06FB-5CC0-4647-A67B-DA30BBA1B720",
+"Cookie":"PHPSESSID=bctdvgskfp11odau68ahuqhbv1",
+"Host":"bububao.duoshoutuan.com",
+"Accept-Language":"zh-cn",
+"Accept":"*/*","Content-Length":"0"}]   
 let dayjinbi=0;
 let lasttxTime=0;
 now = new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000);  
